@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- 加载外部属性配置文件 -->
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
+
+	<!-- 1.数据源 -->
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- set注入 -->
+		<property name="url" value="${mysql.url}"></property>
+		<property name="username" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
+		<property name="driverClassName"
+			value="${mysql.driverClassName}"></property>
+		<property name="maxActive" value="${mysql.maxActive}"></property>
+		<property name="minIdle" value="${mysql.minIdle}"></property>
+		<property name="initialSize" value="${mysql.initialSize}"></property>
+	</bean>
+
+	<!-- 配置Mybatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 配置mybatis全局配置文件 -->
+		<property name="configLocation"
+			value="classpath:mybatis/SqlMapConfig.xml"></property>
+	</bean>
+	<!-- 注入Mapper -->
+	<!-- <bean id="userMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface"
+			value="com.igeekhome.ssm.mapper.UserMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> -->
+
+	<!-- 批量注入Mapper 通过Mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<!-- 批量扫描basePackage配置的包下的接口,为其创建代理对象,并将代理对象注入到Spring容器中 -->
+  		<property name="basePackage" value="com.igeekhome.crm.mapper" />
+  		<!-- 指定sqlSessionFactory的bean的name -->
+  		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+
+</beans>

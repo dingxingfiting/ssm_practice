@@ -1,0 +1,4 @@
+com\igeekhome\crm\service\IBaseDictService.class
+com\igeekhome\crm\service\impl\BaseDictServiceImpl.class
+com\igeekhome\crm\service\impl\CustomerServiceImpl.class
+com\igeekhome\crm\service\ICustomerService.class

@@ -1,0 +1,11 @@
+com\igeek\crud\bean\Message.class
+com\igeek\crud\bean\DepartmentExample$Criteria.class
+com\igeek\crud\bean\DepartmentExample.class
+com\igeek\crud\bean\EmployeeExample$Criteria.class
+com\igeek\crud\bean\EmployeeExample$GeneratedCriteria.class
+com\igeek\crud\bean\DepartmentExample$GeneratedCriteria.class
+com\igeek\crud\bean\Department.class
+com\igeek\crud\bean\EmployeeExample.class
+com\igeek\crud\bean\Employee.class
+com\igeek\crud\bean\DepartmentExample$Criterion.class
+com\igeek\crud\bean\EmployeeExample$Criterion.class
